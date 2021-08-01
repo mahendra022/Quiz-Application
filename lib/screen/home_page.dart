@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/screen/quiz_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,15 +8,39 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void _onLoading() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: new Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              new CircularProgressIndicator(
+                  backgroundColor: Colors.transparent),
+              new Text("Loading Stage"),
+            ],
+          ),
+        );
+      },
+    );
+    new Future.delayed(new Duration(seconds: 3), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => QuizPage()),
+      );
+    });
+  }
+
   Widget _mainWidget() {
     return Column(
       children: [
         Center(
             child: Container(
-          margin: const EdgeInsets.only(top: 400),
           child: FlatButton.icon(
             onPressed: () {
-              print("Play");
+              _onLoading();
             },
             label: Text(
               "Play",
@@ -52,9 +77,20 @@ class _HomePageState extends State<HomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.amber[300],
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              "IQ-Quiz",
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             _mainWidget(),
           ],
         ));
