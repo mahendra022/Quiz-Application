@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/screen/final_result.dart';
 import 'package:quiz/screen/list_question.dart';
 
 class QuizPage extends StatefulWidget {
@@ -8,6 +9,31 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   @override
+  int quesIndex = 0;
+  int score = 0;
+  void _execution(String values) {
+    /// check is value user correct!!
+    var userAnswer = values;
+    for (ListQuestion listQuestion in quess) {
+      if (userAnswer == listQuestion.answer) {
+        score++;
+      }
+    }
+    var userScore = score / quess.length * 100;
+
+    setState(() {
+      if (quesIndex < quess.length - 1) {
+        quesIndex++;
+      } else {
+        Navigator.push(
+          context,
+
+          /// push page & send data score
+          MaterialPageRoute(builder: (context) => FinalResult("$userScore")),
+        );
+      }
+    });
+  }
 
 //action program list question
   Widget _ques() {
@@ -15,10 +41,10 @@ class _QuizPageState extends State<QuizPage> {
       children: [
         Center(
             child: Container(
+          margin: const EdgeInsets.only(bottom: 20),
           child: Text(
-            ques[0].ques,
-
             ///Display question
+            "${quess[quesIndex].ques}",
             style: TextStyle(
                 color: Colors.amber, fontSize: 30, fontWeight: FontWeight.bold),
           ),
@@ -27,13 +53,30 @@ class _QuizPageState extends State<QuizPage> {
           child: Column(
             children: [
               FlatButton(
+                color: Colors.transparent,
+                splashColor: Colors.transparent,
+                onPressed: () {
+                  _execution(quess[quesIndex].answer1);
+                },
+                child: Text(
+                  "A. ${quess[quesIndex].answer1}",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Center(
+          child: Column(
+            children: [
+              FlatButton(
                   color: Colors.transparent,
                   splashColor: Colors.transparent,
                   onPressed: () {
-                    print("User jawab ${ques[0].answer1}");
+                    _execution(quess[quesIndex].answer2);
                   },
                   child: Text(
-                    "A. ${ques[0].answer1}",
+                    "B. ${quess[quesIndex].answer2}",
                     style: TextStyle(color: Colors.white),
                   ))
             ],
@@ -46,26 +89,10 @@ class _QuizPageState extends State<QuizPage> {
                   color: Colors.transparent,
                   splashColor: Colors.transparent,
                   onPressed: () {
-                    print("User jawab ${ques[0].answer2}");
+                    _execution(quess[quesIndex].answer3);
                   },
                   child: Text(
-                    "B. ${ques[0].answer2}",
-                    style: TextStyle(color: Colors.white),
-                  ))
-            ],
-          ),
-        ),
-        Center(
-          child: Column(
-            children: [
-              FlatButton(
-                  color: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  onPressed: () {
-                    print("User jawab ${ques[0].answer3}");
-                  },
-                  child: Text(
-                    "C. ${ques[0].answer3}",
+                    "C. ${quess[quesIndex].answer3}",
                     style: TextStyle(color: Colors.white),
                   ))
             ],

@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
-    new Future.delayed(new Duration(seconds: 3), () {
+    new Future.delayed(new Duration(seconds: 2), () {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => QuizPage()),
