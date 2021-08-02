@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         Center(
             child: Container(
+          margin: const EdgeInsets.only(top: 20),
           child: FlatButton.icon(
             onPressed: () {
               _onLoading();
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           margin: const EdgeInsets.only(top: 10),
           child: FlatButton.icon(
             onPressed: () {
-              print("Setting");
+              _showModalDialog(context);
             },
             label: Text(
               "Select level",
@@ -73,6 +74,69 @@ class _HomePageState extends State<HomePage> {
         )),
       ],
     );
+  }
+
+  _showModalDialog(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: Container(
+                constraints: BoxConstraints(maxHeight: 170, maxWidth: 40),
+                child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                            child: Container(
+                          child: FlatButton(
+                            onPressed: () {
+                              _onLoading();
+                            },
+                            child: Text(
+                              "Easy",
+                              style: TextStyle(
+                                  color: Colors.black, fontFamily: "Sen"),
+                            ),
+                            color: Colors.white,
+                          ),
+                        )),
+                        Center(
+                            child: Container(
+                          child: FlatButton(
+                            onPressed: () {
+                              _onLoading();
+                            },
+                            child: Text(
+                              "Medium",
+                              style: TextStyle(
+                                  color: Colors.black, fontFamily: "Sen"),
+                            ),
+                            color: Colors.white,
+                          ),
+                        )),
+                        Center(
+                            child: Container(
+                          child: FlatButton(
+                            onPressed: () {
+                              _onLoading();
+                            },
+                            child: Text(
+                              "Hard",
+                              style: TextStyle(
+                                  color: Colors.black, fontFamily: "Sen"),
+                            ),
+                            color: Colors.white,
+                          ),
+                        )),
+                      ],
+                    )),
+              ));
+        });
   }
 
   Widget build(BuildContext context) {
