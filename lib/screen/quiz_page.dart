@@ -9,6 +9,9 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   @override
+
+  /// algorithm application
+
   int quesIndex = 0;
   int score = 0;
   void _execution(String values) {
