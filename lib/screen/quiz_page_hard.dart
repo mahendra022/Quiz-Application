@@ -31,7 +31,7 @@ class _QuizPageHardState extends State<QuizPageHard> {
     ListQuestion("142 - 73 x 8 ?", "552", "-442", "-552", "-442"),
     ListQuestion("( 211 - 374 ) x 3 ?", "-489", "-911", "-657", "-489"),
     ListQuestion("139 + 255 x 3 ?", "1.182", "892", "904", "904"),
-    ListQuestion("( 145 * 9 ) + 17 ?", "1.322", "3.770", "2.994", "1.322")
+    ListQuestion("( 145 x 9 ) + 17 ?", "1.322", "3.770", "2.994", "1.322")
   ];
 
   /// algorithm application

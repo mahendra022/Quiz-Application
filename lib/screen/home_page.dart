@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:quiz/screen/quiz_page_easy.dart';
 import 'package:quiz/screen/quiz_page_medium.dart';
@@ -10,6 +12,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+
+  /// Action setting
+  Padding exitbutton({Icon icon, Function onPressedFunction, String label}) {
+    return Padding(
+      padding: const EdgeInsets.all(13),
+      child: Container(
+        width: 70,
+        child: Row(
+          children: [
+            Padding(
+                padding: const EdgeInsets.all(1),
+                child: GestureDetector(onTap: onPressedFunction, child: icon)),
+            Text(label)
+          ],
+        ),
+      ),
+    );
+  }
+
   void _onLoadingLevel1() {
     showDialog(
       context: context,
@@ -93,7 +114,7 @@ class _HomePageState extends State<HomePage> {
           margin: const EdgeInsets.only(top: 20),
           child: FlatButton.icon(
             onPressed: () {
-              _showModalDialog(context);
+              _showModalDialog1(context);
             },
             label: Text(
               "Play",
@@ -111,14 +132,14 @@ class _HomePageState extends State<HomePage> {
           margin: const EdgeInsets.only(top: 10),
           child: FlatButton.icon(
             onPressed: () {
-              _showModalDialog(context);
+              _showModalDialog2(context);
             },
             label: Text(
-              "Setting",
+              "Exit",
               style: TextStyle(color: Colors.black, fontFamily: "Sen"),
             ),
             icon: Icon(
-              Icons.settings,
+              Icons.exit_to_app,
               color: Colors.black,
             ),
             color: Colors.white,
@@ -128,7 +149,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _showModalDialog(context) {
+  _showModalDialog1(context) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -193,6 +214,52 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                           ),
                         )),
+                      ],
+                    )),
+              ));
+        });
+  }
+
+  _showModalDialog2(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: Container(
+                constraints: BoxConstraints(maxHeight: 100, maxWidth: 40),
+                child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text("Are you sure exit?"),
+                        ),
+                        Center(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            exitbutton(
+                                icon: Icon(
+                                  Icons.check_circle,
+                                  color: Colors.blue,
+                                ),
+                                label: 'Exit',
+                                onPressedFunction: () {
+                                  /// Action exit application
+                                  Navigator.of(context).pop(exit(0));
+                                }),
+                            exitbutton(
+                                icon: Icon(Icons.cancel, color: Colors.red),
+                                label: 'Cancel',
+                                onPressedFunction: () {
+                                  Navigator.pop(context);
+                                }),
+                          ],
+                        ))
                       ],
                     )),
               ));
