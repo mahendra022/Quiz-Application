@@ -47,11 +47,11 @@ class FinalResultState extends State<FinalResult> {
               },
               label: Text(
                 "Back Home",
-                style: TextStyle(color: Colors.black, fontFamily: "Sen"),
+                style: TextStyle(color: Colors.white, fontFamily: "Sen"),
               ),
               icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
+                Icons.home_outlined,
+                color: Colors.white,
               ),
               color: Colors.amber[700],
             ),

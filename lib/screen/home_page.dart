@@ -273,7 +273,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Math-Quiz",
+              "IQ-Quiz",
               style: TextStyle(
                   color: Colors.blue,
                   fontSize: 60,
