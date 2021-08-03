@@ -129,13 +129,17 @@ class _QuizPageEasyState extends State<QuizPageEasy> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: new Scaffold(
         backgroundColor: Colors.blue,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _ques(),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
